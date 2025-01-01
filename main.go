@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+    "os"
 )
 
 func main() {
@@ -12,7 +13,8 @@ func main() {
 
 	m.HandleFunc("/", handlePage)
 
-	const addr = ":8080"
+    port := os.Getenv("PORT")
+	var addr = fmt.Sprintf(":%s", port)
 	srv := http.Server{
 		Handler:      m,
 		Addr:         addr,
